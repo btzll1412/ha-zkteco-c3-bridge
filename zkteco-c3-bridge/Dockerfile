@@ -1,11 +1,13 @@
-# Home Assistant add-on base
-ARG BUILD_FROM=ghcr.io/home-assistant/amd64-base:latest
+# Home Assistant add-on base (arch is injected by the Supervisor)
+ARG BUILD_FROM
 FROM ${BUILD_FROM}
 
 ENV LANG=C.UTF-8
 
-# System deps + Python deps
-RUN apk add --no-cache python3 py3-pip jq \     && python3 -m pip install --no-cache-dir --upgrade pip \     && pip3 install --no-cache-dir zkaccess-c3 requests
+# Install Python & tools (single line avoids line-continuation issues)
+RUN apk add --no-cache python3 py3-pip jq \
+ && python3 -m pip install --no-cache-dir --upgrade pip \
+ && pip3 install --no-cache-dir zkaccess-c3 requests
 
 # Files
 COPY zkteco_ha_bridge.py /usr/local/bin/zkteco_ha_bridge.py
