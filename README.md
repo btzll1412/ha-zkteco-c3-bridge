@@ -1,2 +1,2 @@
-# ha-zkteco-c3-bridge
+# hazklogs
 Transfers all the Card logs from ZK access c3 panel to Home Assistant
