@@ -28,4 +28,6 @@ export LOGLEVEL
 export POLL_MS
 
 echo "[zkteco-c3-bridge] Starting with panel_ip=${PANEL_IP}, event_type=${EVENT_TYPE}, poll=${POLL_MS}ms, loglevel=${LOGLEVEL}"
-exec python3 /usr/local/bin/zkteco_ha_bridge.py
+
+# Run with the venv's Python
+exec /opt/venv/bin/python /usr/local/bin/zkteco_ha_bridge.py
