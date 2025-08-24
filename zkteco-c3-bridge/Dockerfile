@@ -1,17 +1,17 @@
-# Supervisor injects BUILD_FROM for the right arch
+# Supervisor injects the right base image for your arch
 ARG BUILD_FROM
 FROM ${BUILD_FROM}
 
 ENV LANG=C.UTF-8
 
-# System deps
+# System deps (no gcc/dev needed)
 RUN apk add --no-cache python3 py3-pip jq
 
-# Create an isolated virtualenv (avoids PEP 668 errors)
+# Isolated virtualenv (avoids PEP 668 “externally-managed”)
 RUN python3 -m venv /opt/venv
 ENV PATH="/opt/venv/bin:${PATH}"
 
-# Python deps (installed into the venv)
+# Python deps into the venv
 RUN pip install --no-cache-dir --upgrade pip \
     && pip install --no-cache-dir zkaccess-c3 requests
 
